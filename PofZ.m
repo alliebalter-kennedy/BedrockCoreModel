@@ -13,7 +13,9 @@ function out = PofZ(zin,m,p,nuclide)
 % 
 % Greg Balco -- Berkeley Geochronology Center -- May 2016
 
-% published in Schaefer et al. (2016)
+% original scrpt can be found at http://hess.ess.washington.edu/repository/GISP2/. 
+
+% accompanies Schaefer et al. (2016)
 
 % Schaefer, J. M., Finkel, R. C., Balco, G., Alley, R. B., Caffee, M. W., 
 % Briner, J. P., et al. (2016). Greenland was nearly ice-free for extended 

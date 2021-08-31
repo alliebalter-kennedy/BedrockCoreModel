@@ -1,12 +1,17 @@
 %% Constants for bedrock profiles 
 
+% Code in this scipt is adapted from code written by
+% Greg Balco, script titled GISP2_data_analysis.m (lines 124-191), which
+% accompanies Schaefer et al. (2016), andcan be found at 
+% http://hess.ess.washington.edu/repository/GISP2/. 
+
 function consts = bedrock_constants()
 
 consts.P10q_St = 4.043; % arctic PR; Young et al., 2013
 consts.delP10q_St = 0.153; % Corresponding uncert.
 
-consts.P14q_St = 13.590; % Svalbard Saturated Peaks - SHOULD UPDATE!! - need baffin PR. 
-consts.delP14q_St = 0.443; % Svalbard Saturated Peaks - SHOULD UPDATE!!
+consts.P14q_St = 13.590; % Svalbard Saturated Peaks 
+consts.delP14q_St = 0.443; % Svalbard Saturated Peaks
 
 consts.R2610q = 6.75;
 

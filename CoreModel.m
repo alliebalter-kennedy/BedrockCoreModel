@@ -4,8 +4,6 @@ function [N_final, depths_final] = LIA_CoreModel(loc, history, erosion, steady_s
 
 consts = bedrock_constants();
 
-% should update this so it is a stand-alone script. 
-
 %% Inputs to calculate production 
 
 dz = erosion.dz; 
@@ -17,6 +15,12 @@ z_gcm2 = z_cm.*rho;    % [g cm^-2]; depth
 
 
 profile_vec = erosion.profile_vec'.*rho; % [g cm^-2];
+
+% The remainder of code in this section is adapted from code written by
+% Greg Balco, script titled GISP2_data_analysis.m (lines 124-191), which
+% accompanies Schaefer et al. (2016), and can be found at 
+% http://hess.ess.washington.edu/repository/GISP2/. 
+
 
 % Atmospheric pressure at site
 site_p = ERA40atm(loc.lat,loc.long,loc.elv); % site air pressure

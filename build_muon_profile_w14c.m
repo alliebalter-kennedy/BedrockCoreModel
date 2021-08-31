@@ -11,15 +11,17 @@ function out = build_muon_profile_w14c(pressure,consts,plotFlag)
 % consts is consts struct with muon params
 % plotFlag is 0 or 1 to disable/enable check plots
 
-% published in Schaefer et al. (2016)
-
-% Updated by Allie Balter-Kennedy: January 2020
-% Added constants for 14C production from Balco (2017)
+% Original scriptaccompanies Schaefer et al. (2016), and can be found at 
+% http://hess.ess.washington.edu/repository/GISP2/. 
 
 % Schaefer, J. M., Finkel, R. C., Balco, G., Alley, R. B., Caffee, M. W., 
 % Briner, J. P., et al. (2016). Greenland was nearly ice-free for extended 
 % periods during the Pleistocene. Nature, 540(7632), 252?255. 
 % https://doi.org/10.1038/nature20146
+
+
+% Updated by Allie Balter-Kennedy: January 2020
+% Added constants for 14C production from Balco (2017)
 
 % Define lower boundary of precise calculation
 zbot = 20000;
