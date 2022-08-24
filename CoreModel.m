@@ -75,11 +75,11 @@ for b = 1:length(erosion.gl_erosion) % loop over orbital-scale erosion rates
 
     % define erosion
 
-    gl_erosion_rate = (erosion.gl_erosion(b)./10) .* rho; % erosion rate for each period of ice cover [cm/yr]
-    gl_erosion = gl_erosion_rate .* length_gl; % total erosion depth for each period of ice cover [cm]
+    gl_erosion_rate = (erosion.gl_erosion(b)./10) .* rho; % erosion rate for each period of ice cover [g cm^-2 yr^-1]
+    gl_erosion = gl_erosion_rate .* length_gl; % total erosion depth for each period of ice cover [g cm^-2]
 
-    historical_erosion_rate = (erosion.historical_erosion(c)./10) .* rho; % historical erosion rates [cm/yr]
-    historical_erosion = historical_erosion_rate .* historical_cover; % total erosion depth for historical ice cover [cm]
+    historical_erosion_rate = (erosion.historical_erosion(c)./10) .* rho; % historical erosion rates [g cm^-2 yr^-1]
+    historical_erosion = historical_erosion_rate .* historical_cover; % total erosion depth for historical ice cover [g cm^-2]
 
     addint = 0; % force model to start during a period of ice cover to start eroding steady state profile. inititlize binary variable. 
     if length(length_int) < length(length_gl) % if fewer interglacials than glacials
@@ -87,13 +87,13 @@ for b = 1:length(erosion.gl_erosion) % loop over orbital-scale erosion rates
         length_int = [0; length_int]; % add interglcial of length zero at first interglacial. 
     end
 
-    gl_erosion = gl_erosion.*ones(length(length_gl), size(gl_erosion, 2)); % create vector with erosion depths during ice cover
+    gl_erosion = gl_erosion.*ones(length(length_gl), size(gl_erosion, 2)); % create vector with erosion depths during ice cover [g cm^-2 yr^-1]
     int_erosion = 0.*ones(length(length_int), 1); % create vector with erosion depths during ice free periods. right now just 0, but could add e/L to nuclide calcs.        
 
     % interleave vectors for erosion during glacials and interglacials.
 
-    erode = zeros(size(gl_erosion, 2), size(length_int, 1).*2);
-    erode = (reshape([int_erosion(:) gl_erosion(:)]', 2*size(length_int, 1), [])');
+    erode = zeros(size(gl_erosion, 2), size(length_int, 1).*2); 
+    erode = (reshape([int_erosion(:) gl_erosion(:)]', 2*size(length_int, 1), [])'); %[g cm^-2]
 
 
     if addint == 1;
@@ -105,12 +105,12 @@ for b = 1:length(erosion.gl_erosion) % loop over orbital-scale erosion rates
 
 
     % add Holocene erosion information to "erode" vector
-    erode = [erode 0 historical_erosion 0];
+    erode = [erode 0 historical_erosion 0]; %[g cm^-2]
 
-    erode = round(erode, 2); % round to nearest 0.1 cm.
-    startdepth = max(fliplr(cumsum(erode))); % find starting depth of modern rock surface
+    erode = round(erode, 2); % round to nearest 0.1 [g cm^2].
+    startdepth = max(fliplr(cumsum(erode))); % find starting depth of modern rock surface [g cm^2]
 
-    start_index = ceil(((startdepth./rho)./dz)+1); % find index of the starting depth
+    start_index = ceil(((startdepth./rho)./dz)+1); % find index of the starting depth [using startdepth in cm]
 
     %% Run Model
 
